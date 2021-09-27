@@ -1,0 +1,24 @@
+{
+  "filename": "90578880ac6320df735007312355af3be13935bbc12666565e8811fe477d1320",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "flatten"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          10
+        ]
+      }
+    ],
+    "accuracy": 90.04000091552734
+  }
+}

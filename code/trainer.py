@@ -1,14 +1,9 @@
 import torch
 import torchvision
-import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-import matplotlib.pyplot as plt
-import sys
-from random import random
-import hashlib
-import json
 import os
+import model
 
 # n_epochs = 3
 n_epochs = 1
@@ -95,50 +90,21 @@ def test():
 		test_loss, correct, len(test_loader.dataset), accuracy))
 		network.model['accuracy'] = accuracy.item()
 
-def modelHash(net):
-	sha = hashlib.sha256()
-	sha.update(str(net).encode())
-	return sha.hexdigest()
-
-def modelExist(net):
-	filename = modelHash(net)
-	return os.path.isfile(f'model/{filename}.json')
-
-def modelLoad(net):
-	filename = modelHash(net)
-	jsonFile = open(f'model/{filename}.json', "rt")
-	jsonStr = jsonFile.read()
-	jsonObj = json.loads(jsonStr)
-	jsonFile.close()
-	torch.load(net.state_dict(), f'model/{filename}.pt')
-
-def modelSave(net):
-	filename = modelHash(net)
-	jsonObj = {
-		"filename": filename,
-		"model":net.model
-	}
-	jsonFile = open(f'model/{filename}.json', "wt")
-	jsonFile.write(json.dumps(jsonObj, indent=2))
-	jsonFile.close()
-	torch.save(net.state_dict(), f'model/{filename}.pt')
-
 def run(net):
 	init(net)
 	test()
 	for epoch in range(1, n_epochs + 1):
 		train(epoch)
 		test()
-	modelSave(net)
+	model.save(net)
 
-module = __import__(sys.argv[1])
-Net = module.Net
-# net = Net([28, 28], 10)
-net = Net([28, 28], [10])
-if modelExist(net):
-	print('model exist!')
-	print('net.model[0]=', net.model[0])
-	print('net.model[0].in_features=', net.model[0].in_features)
-	print('net.model[0].out_features=', net.model[0].out_features)
-else:
-	run(net)
+def main():
+	from net import Net
+	net = Net.base_model([28,28], [10])
+	if model.exist(net):
+		print('model exist!')
+	else:
+		run(net)
+
+if __name__ == '__main__':
+	main()
