@@ -12,9 +12,9 @@ class Net(nn.Module):
         self.classes = classes # size of output
         self.accuracy = 0
         self.model = torch.nn.Sequential(
-            torch.nn.Linear(self.size, 50),
-            torch.nn.ReLU(),
-            torch.nn.Linear(50, self.classes)
+            torch.nn.Linear(self.size, 100),
+            # torch.nn.ReLU(),
+            torch.nn.Linear(100, self.classes)
         )
 
     def forward(self, x):
