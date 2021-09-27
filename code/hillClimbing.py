@@ -9,7 +9,6 @@ def hillClimbing(s, maxGens, maxFails):   # 爬山演算法的主體函數
         sheight = s.height()              #  sheight=目前解的高度
         nheight = snew.height()           #  nheight=鄰近解的高度
         print(f'sheight:{sheight} nheight:{nheight}')
-        sys.exit(1)
         if (nheight >= sheight):          #  如果鄰近解比目前解更好
             print(gens, ':', snew.str())  #    印出新的解
             s = snew                      #    就移動過去

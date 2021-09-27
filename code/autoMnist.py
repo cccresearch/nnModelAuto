@@ -9,4 +9,4 @@ def start():
 		run(net)
 	return SolutionNet(net)
 
-hillClimbing(start(), 100, 10)
+hillClimbing(start(), 2, 2)

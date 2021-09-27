@@ -26,7 +26,7 @@ class SolutionNet(Solution):
 		nNet.build(model)
 		return SolutionNet(nNet)
 
-	def energy(self): #  能量函數
+	def height(self): #  能量函數
 		net = self.net
 		if not model.exist(net):
 			trainer.run(net)
@@ -38,5 +38,5 @@ class SolutionNet(Solution):
 		return net.model['accuracy']
 
 	def str(self):    #  將解答轉為字串的函數，以供列印用。
-		return "height({:s})={:f}".format(str(self.net), self.energy())
+		return "height({})={:f}".format(self.net.model, self.energy())
 
