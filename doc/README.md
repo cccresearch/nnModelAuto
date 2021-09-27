@@ -2,5 +2,5 @@
 
 # document
 
-1. Only [Chinese Version](chinese) Now !
+1. Only [Chinese Version](chinese) available now !
 

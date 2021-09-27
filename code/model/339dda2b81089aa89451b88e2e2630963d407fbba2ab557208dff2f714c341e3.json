@@ -1,4 +1,0 @@
-{
-  "filename": "339dda2b81089aa89451b88e2e2630963d407fbba2ab557208dff2f714c341e3",
-  "model": "Sequential(\n  (0): Linear(in_features=784, out_features=10, bias=True)\n)"
-}

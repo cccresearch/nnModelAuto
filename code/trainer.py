@@ -10,7 +10,8 @@ import hashlib
 import json
 import os
 
-n_epochs = 3
+# n_epochs = 3
+n_epochs = 1
 batch_size_train = 64
 batch_size_test = 1000
 learning_rate = 0.01
@@ -92,7 +93,7 @@ def test():
 		accuracy = 100. * correct / len(test_loader.dataset)
 		print('\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
 		test_loss, correct, len(test_loader.dataset), accuracy))
-		network.accuracy = accuracy
+		network.model['accuracy'] = accuracy.item()
 
 def modelHash(net):
 	sha = hashlib.sha256()
@@ -115,13 +116,12 @@ def modelSave(net):
 	filename = modelHash(net)
 	jsonObj = {
 		"filename": filename,
-		"model":str(net),
-		"accuracy": net.accuracy
+		"model":net.model
 	}
-	torch.save(net.state_dict(), f'model/{filename}.pt')
 	jsonFile = open(f'model/{filename}.json', "wt")
 	jsonFile.write(json.dumps(jsonObj, indent=2))
 	jsonFile.close()
+	torch.save(net.state_dict(), f'model/{filename}.pt')
 
 def run(net):
 	init(net)
@@ -134,7 +134,7 @@ def run(net):
 module = __import__(sys.argv[1])
 Net = module.Net
 # net = Net([28, 28], 10)
-net = Net([28, 28], 10)
+net = Net([28, 28], [10])
 if modelExist(net):
 	print('model exist!')
 	print('net.model[0]=', net.model[0])

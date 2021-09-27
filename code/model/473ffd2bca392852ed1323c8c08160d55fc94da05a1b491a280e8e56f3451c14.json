@@ -1,0 +1,36 @@
+{
+  "filename": "473ffd2bca392852ed1323c8c08160d55fc94da05a1b491a280e8e56f3451c14",
+  "model": {
+    "inShape": [
+      28,
+      28
+    ],
+    "outShape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "flatten"
+      },
+      {
+        "type": "linear",
+        "inShape": [
+          784
+        ],
+        "outShape": [
+          50
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "outShape": [
+          10
+        ]
+      }
+    ],
+    "accuracy": 91.9000015258789
+  }
+}
