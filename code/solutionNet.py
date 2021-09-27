@@ -1,10 +1,12 @@
 from net import Net
 from solution import Solution
-from random import random, randint
+import random
 import trainer
 import copy
 import model
 import sys
+
+actTypes = ["relu", "sigmoid" ]
 
 class SolutionNet(Solution):
 	def __init__(self, net):
@@ -18,15 +20,28 @@ class SolutionNet(Solution):
 	* RELU/Sigmoid 這類的層，可以新增與刪除。
 	* 對於有參數的層，可以使用修改參數的方式產生鄰居。
 	'''
-	def neighbor(self): # 鄰居函數
+	def neighbor(self):
 		model = copy.deepcopy(self.net.model)
 		layers = model["layers"]
-		layers.append({"type": "relu"})
+		success = False
+		while not success:
+			i = random.randint(0, len(layers)-1)
+			t = layers[i]['type']
+			if t in actTypes:
+				layers[i]["type"] = random.choice(actTypes)
+				success = True
+			elif t=="linear":
+				out_shape = layers[i]["out_shape"]
+				layers.insert(i, {"type":"relu"})
+				k = random.randint(2, 8) # 前一個 linear 層 out_shape 增加 2 到 8 倍
+				layers.insert(i, {"type":"linear", "out_shape":[x * k for x in out_shape]})
+				success = True
+		
 		nNet = Net()
 		nNet.build(model)
 		return SolutionNet(nNet)
 
-	def height(self): #  能量函數
+	def height(self):
 		net = self.net
 		if not model.exist(net):
 			trainer.run(net)
@@ -37,6 +52,6 @@ class SolutionNet(Solution):
 		print('net=', net)
 		return net.model['accuracy']
 
-	def str(self):    #  將解答轉為字串的函數，以供列印用。
-		return "height({})={:f}".format(self.net.model, self.energy())
+	def str(self):
+		return "height({})={:f}".format(self.net.model, self.height())
 

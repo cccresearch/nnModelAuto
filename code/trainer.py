@@ -5,8 +5,8 @@ import torch.optim as optim
 import os
 import model
 
-# n_epochs = 3
-n_epochs = 1
+n_epochs = 3
+# n_epochs = 1
 batch_size_train = 64
 batch_size_test = 1000
 learning_rate = 0.01

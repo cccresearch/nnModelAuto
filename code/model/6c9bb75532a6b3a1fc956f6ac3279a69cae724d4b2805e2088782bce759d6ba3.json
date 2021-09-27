@@ -1,0 +1,42 @@
+{
+  "filename": "6c9bb75532a6b3a1fc956f6ac3279a69cae724d4b2805e2088782bce759d6ba3",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "flatten"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          70
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          80
+        ]
+      },
+      {
+        "type": "sigmoid"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          10
+        ]
+      }
+    ],
+    "accuracy": 85.5999984741211
+  }
+}

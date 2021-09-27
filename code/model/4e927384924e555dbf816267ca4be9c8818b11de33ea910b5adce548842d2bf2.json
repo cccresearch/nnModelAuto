@@ -1,5 +1,5 @@
 {
-  "filename": "90578880ac6320df735007312355af3be13935bbc12666565e8811fe477d1320",
+  "filename": "4e927384924e555dbf816267ca4be9c8818b11de33ea910b5adce548842d2bf2",
   "model": {
     "in_shape": [
       28,
@@ -15,10 +15,19 @@
       {
         "type": "linear",
         "out_shape": [
+          50
+        ]
+      },
+      {
+        "type": "sigmoid"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
           10
         ]
       }
     ],
-    "accuracy": 91.18000030517578
+    "accuracy": 87.63999938964844
   }
 }

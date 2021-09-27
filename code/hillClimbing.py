@@ -16,6 +16,7 @@ def hillClimbing(s, maxGens, maxFails):   # 爬山演算法的主體函數
         else:                             #  否則
             fails = fails + 1             #    將連續失敗次數加一
         if (fails >= maxFails):
+            print(f'fail {fails} times!')
             break
     print("solution: ", s.str())          #  印出最後找到的那個解
     return s                              #    然後傳回。
