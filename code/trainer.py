@@ -35,15 +35,6 @@ test_loader = torch.utils.data.DataLoader(
 							 ])),
 	batch_size=batch_size_test, shuffle=True)
 
-'''
-train_losses = None
-train_counter = None
-test_losses = None
-test_counter = None
-network = []
-optimizer = []
-'''
-
 def init(net):
 	global train_losses, train_counter, test_losses, test_counter, network, optimizer
 	train_losses = []
@@ -56,7 +47,7 @@ def init(net):
 def train(epoch):
 	network.train()
 	for batch_idx, (data, target) in enumerate(train_loader):
-		if batch_idx > 300: break
+		# if batch_idx > 300: break
 		optimizer.zero_grad()
 		output = network(data)
 		loss = F.nll_loss(F.log_softmax(output, dim=1), target)

@@ -1,5 +1,5 @@
 {
-  "filename": "b73cf06562795dc8754d3bc9f4de5e1b571f392997b3ea60cfb92964010b4e60",
+  "filename": "532aa654877e00d71d5a5b09be992112dbc471ad3f5373aecc176b5a91112a75",
   "model": {
     "in_shape": [
       28,
@@ -15,16 +15,34 @@
       {
         "type": "linear",
         "out_shape": [
-          70
+          20
         ]
       },
       {
-        "type": "sigmoid"
+        "type": "relu"
       },
       {
         "type": "linear",
         "out_shape": [
-          80
+          420
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          60
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          40
         ]
       },
       {
@@ -37,6 +55,6 @@
         ]
       }
     ],
-    "accuracy": 86.01000213623047
+    "accuracy": 93.9800033569336
   }
 }

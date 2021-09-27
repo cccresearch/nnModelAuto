@@ -1,5 +1,5 @@
 {
-  "filename": "404c4d9ffe1581b90f1923e22429cf1d745177203b48d7f801636639d95fe4e2",
+  "filename": "d3a34db551a969edd690623dcb6b36acebe0ae271c42399158abb1daa6342197",
   "model": {
     "in_shape": [
       28,
@@ -15,7 +15,7 @@
       {
         "type": "linear",
         "out_shape": [
-          490
+          100
         ]
       },
       {
@@ -24,7 +24,7 @@
       {
         "type": "linear",
         "out_shape": [
-          70
+          20
         ]
       },
       {
@@ -33,7 +33,34 @@
       {
         "type": "linear",
         "out_shape": [
-          80
+          840
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          420
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          60
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          60
         ]
       },
       {
@@ -46,6 +73,6 @@
         ]
       }
     ],
-    "accuracy": 91.2699966430664
+    "accuracy": 94.37999725341797
   }
 }
