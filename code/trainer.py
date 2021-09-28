@@ -7,11 +7,11 @@ import os
 import model
 
 def log(msg):
-	# print(msg)
-	pass
+	print(msg)
+	# pass
 
 n_epochs = 3
-epoch_seconds_limit = 100
+epoch_seconds_limit = 5 # 100
 batch_size_train = 64
 batch_size_test = 1000
 learning_rate = 0.01
@@ -95,7 +95,8 @@ def run(net):
 
 def main():
 	from net import Net
-	net = Net.base_model([28,28], [10])
+	# net = Net.base_model([28,28], [10])
+	net = Net.cnn_model([28,28], [10])
 	if model.exist(net):
 		log('model exist!')
 	else:
