@@ -35,7 +35,9 @@ class Net(nn.Module):
 			elif t=='Conv2d':
 				in_channels = shape[1]
 				out_channels = layer['out_channels']
-				rlayer = nn.Conv2d(in_channels, out_channels, kernel_size=3)
+				kernel_size = layer.get('kernel_size', 3)
+				stride = layer.get('stride', 1)
+				rlayer = nn.Conv2d(in_channels, out_channels, kernel_size=kernel_size, stride=stride)
 			elif t=='AvgPool2d':
 				kernel_size = layer['kernel_size']
 				rlayer = nn.AvgPool2d(kernel_size)
@@ -51,13 +53,10 @@ class Net(nn.Module):
 			#print('out_shape=', out_shape)
 			shape = out_shape
 		
-		# self.net.add_module("out", nn.Linear(shape[0], self.model["out_shape"][0]))
+		print('shape=', shape)
+		self.net.add_module("out", nn.Linear(shape[1], self.model["out_shape"][0]))
 		print('build:net=', self.net)
-		# sys.exit(1)
 		self.model['parameter_count'] = self.parameter_count()
-		# summary(self.net, (1,28,28)) #self.model["in_shape"])
-		# sys.exit(1)
-		# print('net:', str(self.net))
 
 	def parameter_count(self):
 		return sum(p.numel() for p in self.net.parameters())
@@ -101,14 +100,15 @@ class Net(nn.Module):
 			"in_shape": in_shape,
 			"out_shape": out_shape,
 			"layers":[
-				{"type": "Conv2d", "out_channels":6 },
-				{"type": "AvgPool2d", "kernel_size":3 },
-				{"type": "Conv2d", "out_channels":12 },
-				{"type": "AvgPool2d", "kernel_size":3 },
+				{"type": "Conv2d", "out_channels":6, "kernel_size":5, "stride": 1 },
+				{"type": "AvgPool2d", "kernel_size":2 },
+				{"type": "Conv2d", "out_channels":16, "kernel_size":5 },
+				{"type": "AvgPool2d", "kernel_size":2 },
 				{"type": "Flatten" },
 				{"type": "Linear", "out_features":120 },
 				{"type": "ReLU" },
-				{"type": "Linear", "out_features":60 },
+				{"type": "Linear", "out_features":84 },
+				{"type": "ReLU" },
 			]
 		}
 		print("build cnn model:", model)

@@ -1,0 +1,52 @@
+{
+  "filename": "d95e936a4ce29817d3f832ade7233a69271cfe80973d0a83c03f577525d49d00",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "Conv2d",
+        "out_channels": 6,
+        "kernel_size": 5,
+        "stride": 1
+      },
+      {
+        "type": "AvgPool2d",
+        "kernel_size": 2
+      },
+      {
+        "type": "Conv2d",
+        "out_channels": 16,
+        "kernel_size": 5
+      },
+      {
+        "type": "AvgPool2d",
+        "kernel_size": 2
+      },
+      {
+        "type": "Flatten"
+      },
+      {
+        "type": "Linear",
+        "out_features": 120
+      },
+      {
+        "type": "ReLU"
+      },
+      {
+        "type": "Linear",
+        "out_features": 84
+      },
+      {
+        "type": "ReLU"
+      }
+    ],
+    "parameter_count": 44426,
+    "accuracy": 96.58999633789062
+  }
+}
