@@ -23,13 +23,6 @@ class SolutionNet(Solution):
 		super(type(self), self).__init__(net)
 		self.net = net
 
-	'''
-	3. 鄰居的產生方法
-	* 選定一層，然後用《分裂、修改、新增、刪除》等方法進行鄰居產生
-	* 全連接層適合用《分裂》產生鄰居。(例如 MNIST 562=>10, 分裂成 562=>50=>10)
-	* RELU/Sigmoid 這類的層，可以新增與刪除。
-	* 對於有參數的層，可以使用修改參數的方式產生鄰居。
-	'''
 	def neighbor(self):
 		model = copy.deepcopy(self.net.model)
 		layers = model["layers"]
@@ -38,10 +31,11 @@ class SolutionNet(Solution):
 		while not success:
 			success = True
 			i = random.randint(0, len(layers)-1)
+			layer = layers[i]
 			op = random.choice(ops)
 			if op == "insert":
 				layers.insert(i+1, randomLayer()) # 插在第 i 層後面
-			elif i==0: # Flatten 層必須保留
+			elif layer["type"]=="flatten": # Flatten 層必須保留(只能有一個 Flatten 層)
 				success = False
 			elif op == "delete":
 				del layers[i]

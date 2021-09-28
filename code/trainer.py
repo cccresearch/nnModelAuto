@@ -7,7 +7,8 @@ import os
 import model
 
 def log(msg):
-	print(msg)
+	# print(msg)
+	pass
 
 n_epochs = 3
 epoch_seconds_limit = 100
