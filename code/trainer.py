@@ -5,8 +5,8 @@ import torch.optim as optim
 import os
 import model
 
-n_epochs = 3
-# n_epochs = 1
+# n_epochs = 3
+n_epochs = 1
 batch_size_train = 64
 batch_size_test = 1000
 learning_rate = 0.01
@@ -47,7 +47,7 @@ def init(net):
 def train(epoch):
 	network.train()
 	for batch_idx, (data, target) in enumerate(train_loader):
-		# if batch_idx > 300: break
+		if batch_idx > 300: break
 		optimizer.zero_grad()
 		output = network(data)
 		loss = F.nll_loss(F.log_softmax(output, dim=1), target)
@@ -87,7 +87,7 @@ def run(net):
 	for epoch in range(1, n_epochs + 1):
 		train(epoch)
 		test()
-	model.save(net)
+	model.save(net) # 這裡 train 完就 save 了，但是還沒設定 height ...
 
 def main():
 	from net import Net

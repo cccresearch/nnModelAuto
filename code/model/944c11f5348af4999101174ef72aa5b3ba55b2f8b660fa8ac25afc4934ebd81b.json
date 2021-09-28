@@ -1,5 +1,5 @@
 {
-  "filename": "d25755b246f42c67277b86768c131c09164460208802717c2b0a728033f614dc",
+  "filename": "944c11f5348af4999101174ef72aa5b3ba55b2f8b660fa8ac25afc4934ebd81b",
   "model": {
     "in_shape": [
       28,
@@ -15,16 +15,7 @@
       {
         "type": "linear",
         "out_shape": [
-          20
-        ]
-      },
-      {
-        "type": "relu"
-      },
-      {
-        "type": "linear",
-        "out_shape": [
-          60
+          64
         ]
       },
       {
@@ -37,6 +28,8 @@
         ]
       }
     ],
-    "accuracy": 94.11000061035156
+    "parameter_count": 50890,
+    "accuracy": 89.48999786376953,
+    "height": 89.25500091552735
   }
 }

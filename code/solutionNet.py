@@ -6,11 +6,20 @@ import copy
 import model
 import sys
 
-actTypes = ["relu", "sigmoid" ]
+types = ["relu", "linear"] # "sigmoid",...
+sizes = [ 8, 16, 32, 64, 128, 256 ] # 限縮選取範圍，避免太多鄰居
+
+def randomLayer():
+	type1 = random.choice(types)
+	if type1 == "linear":
+		k = random.choice(sizes)
+		return {"type":"linear", "out_shape":[k]}
+	else:
+		return {"type":type1}
 
 class SolutionNet(Solution):
 	def __init__(self, net):
-		super(SolutionNet, self).__init__(net)
+		super(type(self), self).__init__(net)
 		self.net = net
 
 	'''
@@ -23,19 +32,16 @@ class SolutionNet(Solution):
 	def neighbor(self):
 		model = copy.deepcopy(self.net.model)
 		layers = model["layers"]
-		success = False
-		while not success:
-			i = random.randint(0, len(layers)-1)
-			t = layers[i]['type']
-			if t in actTypes:
-				layers[i]["type"] = random.choice(actTypes)
-				success = True
-			elif t=="linear":
-				out_shape = layers[i]["out_shape"]
-				layers.insert(i, {"type":"relu"})
-				k = random.randint(2, 8) # 前一個 linear 層 out_shape 增加 2 到 8 倍
-				layers.insert(i, {"type":"linear", "out_shape":[x * k for x in out_shape]})
-				success = True
+		ops = ["insert", "update", "update", "delete"]
+		i = random.randint(0, len(layers)-1)
+		op = random.choice(ops)
+
+		if op == "delete":
+			del layers[i]
+		elif op == "update":
+			layers[i] = randomLayer()
+		else: # op == "insert":
+			layers.insert(i, randomLayer())
 		
 		nNet = Net()
 		nNet.build(model)
@@ -48,9 +54,11 @@ class SolutionNet(Solution):
 		else:
 			jsonObj = model.load(net)
 			net.model['accuracy'] = jsonObj['model']['accuracy']
-		
 		print('net=', net)
-		return net.model['accuracy']
+		h = net.model['accuracy']-(net.model['parameter_count']/10000)
+		net.model['height'] = h
+		print('model=', net.model)
+		return h
 
 	def str(self):
 		return "height({})={:f}".format(self.net.model, self.height())

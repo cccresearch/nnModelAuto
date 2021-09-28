@@ -1,5 +1,5 @@
 {
-  "filename": "90578880ac6320df735007312355af3be13935bbc12666565e8811fe477d1320",
+  "filename": "aed0bdf06f31b357d171888a34d14012bf3d3041cbb420aa6c0916d5af5a737a",
   "model": {
     "in_shape": [
       28,
@@ -19,6 +19,7 @@
         ]
       }
     ],
-    "accuracy": 92.0
+    "parameter_count": 7850,
+    "accuracy": 90.04000091552734
   }
 }

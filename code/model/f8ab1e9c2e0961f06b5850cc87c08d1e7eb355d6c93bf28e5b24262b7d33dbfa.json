@@ -1,0 +1,35 @@
+{
+  "filename": "f8ab1e9c2e0961f06b5850cc87c08d1e7eb355d6c93bf28e5b24262b7d33dbfa",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "flatten"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          8
+        ]
+      },
+      {
+        "type": "relu"
+      },
+      {
+        "type": "linear",
+        "out_shape": [
+          10
+        ]
+      }
+    ],
+    "parameter_count": 6370,
+    "accuracy": 84.69999694824219,
+    "height": 89.25500091552735
+  }
+}
