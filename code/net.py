@@ -17,7 +17,7 @@ class Net(nn.Module):
 
 	def build(self, model):
 		self.model = copy.deepcopy(model)
-		print('model:', json.dumps(self.model, indent=2))
+		# print('model:', json.dumps(self.model, indent=2))
 
 		self.net = torch.nn.Sequential()
 		layers = self.model["layers"]
@@ -41,7 +41,7 @@ class Net(nn.Module):
 		
 		self.net.add_module("out", linearLayer(shape, self.model["out_shape"]))
 		self.model['parameter_count'] = self.parameter_count()
-		print('net:', str(self.net))
+		# print('net:', str(self.net))
 
 	def parameter_count(self):
 		return sum(p.numel() for p in self.net.parameters())

@@ -7,4 +7,4 @@ def start():
 	net = Net.base_model([28,28], [10])
 	return SolutionNet(net)
 
-hillClimbing(start(), 10, 5)
+hillClimbing(start(), 1000, 50)

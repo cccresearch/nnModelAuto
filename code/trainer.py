@@ -2,11 +2,15 @@ import torch
 import torchvision
 import torch.nn.functional as F
 import torch.optim as optim
+from datetime import datetime
 import os
 import model
 
-# n_epochs = 3
-n_epochs = 1
+def log(msg):
+	print(msg)
+
+n_epochs = 3
+epoch_seconds_limit = 100
 batch_size_train = 64
 batch_size_test = 1000
 learning_rate = 0.01
@@ -45,24 +49,24 @@ def init(net):
 	optimizer = optim.SGD(network.parameters(), lr=learning_rate, momentum=momentum)
 
 def train(epoch):
+	tstart = datetime.now()
 	network.train()
 	for batch_idx, (data, target) in enumerate(train_loader):
-		if batch_idx > 300: break
+		tnow = datetime.now()
+		dt = tnow - tstart
+		if dt.seconds > epoch_seconds_limit: break
 		optimizer.zero_grad()
 		output = network(data)
 		loss = F.nll_loss(F.log_softmax(output, dim=1), target)
 		loss.backward()
 		optimizer.step()
 		if batch_idx % log_interval == 0:
-			print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+			log('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
 			epoch, batch_idx * len(data), len(train_loader.dataset),
 			100. * batch_idx / len(train_loader), loss.item()))
 			train_losses.append(loss.item())
 			train_counter.append(
 			(batch_idx*64) + ((epoch-1)*len(train_loader.dataset)))
-		
-			# torch.save(network.state_dict(), 'results/model.pth')
-			# torch.save(optimizer.state_dict(), 'results/optimizer.pth')
 
 def test():
 	network.eval()
@@ -77,23 +81,22 @@ def test():
 		test_loss /= len(test_loader.dataset)
 		test_losses.append(test_loss)
 		accuracy = 100. * correct / len(test_loader.dataset)
-		print('\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+		log('\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
 		test_loss, correct, len(test_loader.dataset), accuracy))
 		network.model['accuracy'] = accuracy.item()
 
 def run(net):
 	init(net)
-	test()
 	for epoch in range(1, n_epochs + 1):
 		train(epoch)
-		test()
-	model.save(net) # 這裡 train 完就 save 了，但是還沒設定 height ...
+	test()
+	model.save(net)
 
 def main():
 	from net import Net
 	net = Net.base_model([28,28], [10])
 	if model.exist(net):
-		print('model exist!')
+		log('model exist!')
 	else:
 		run(net)
 

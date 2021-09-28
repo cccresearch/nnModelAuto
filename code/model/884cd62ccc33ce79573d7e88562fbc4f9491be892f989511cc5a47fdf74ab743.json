@@ -1,5 +1,5 @@
 {
-  "filename": "acc348392f2867703d289cf23520791d62feeb8737d478fa5885fb956f3fbbbc",
+  "filename": "884cd62ccc33ce79573d7e88562fbc4f9491be892f989511cc5a47fdf74ab743",
   "model": {
     "in_shape": [
       28,
@@ -11,9 +11,12 @@
     "layers": [
       {
         "type": "flatten"
+      },
+      {
+        "type": "relu"
       }
     ],
     "parameter_count": 7850,
-    "accuracy": 91.8499984741211
+    "accuracy": 91.80000305175781
   }
 }
