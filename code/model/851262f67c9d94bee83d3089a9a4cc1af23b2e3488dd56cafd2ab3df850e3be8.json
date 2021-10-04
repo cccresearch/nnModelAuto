@@ -1,0 +1,25 @@
+{
+  "filename": "851262f67c9d94bee83d3089a9a4cc1af23b2e3488dd56cafd2ab3df850e3be8",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "ReLU"
+      },
+      {
+        "type": "ReLU"
+      },
+      {
+        "type": "Flatten"
+      }
+    ],
+    "parameter_count": 7850,
+    "accuracy": 91.80000305175781
+  }
+}

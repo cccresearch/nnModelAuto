@@ -1,0 +1,5 @@
+start: {'in_shape': [28, 28], 'out_shape': [10], 'layers': [{'type': 'Flatten'}], 'parameter_count': 7850, 'accuracy': 91.79000091552734} height=91.782151
+0:{'in_shape': [28, 28], 'out_shape': [10], 'layers': [{'type': 'ReLU'}, {'type': 'Flatten'}], 'parameter_count': 7850, 'accuracy': 91.80999755859375} height=91.802148
+2:{'in_shape': [28, 28], 'out_shape': [10], 'layers': [{'type': 'ReLU'}, {'type': 'ReLU'}, {'type': 'Flatten'}], 'parameter_count': 7850, 'accuracy': 91.93000030517578} height=91.922150
+10:{'in_shape': [28, 28], 'out_shape': [10], 'layers': [{'type': 'Conv2d', 'out_channels': 16}, {'type': 'ReLU'}, {'type': 'Flatten'}], 'parameter_count': 108330, 'accuracy': 97.1500015258789} height=97.041672
+14:{'in_shape': [28, 28], 'out_shape': [10], 'layers': [{'type': 'Conv2d', 'out_channels': 16}, {'type': 'ReLU'}, {'type': 'ReLU'}, {'type': 'Flatten'}], 'parameter_count': 108330, 'accuracy': 97.37000274658203} height=97.261673

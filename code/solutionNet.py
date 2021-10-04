@@ -6,30 +6,29 @@ import copy
 import model
 import sys
 
-types = ["ReLU", "Linear", "Conv2d", "AvgPool2d"]
+types = ["ReLU", "Linear", "Conv2d", "AvgPool2d", "LinearReLU", "ConvPool2d"]
 sizes = [ 8, 16, 32, 64, 128, 256 ] # 限縮大小選取範圍，避免太多鄰居，所以不是所有整數都可以
 channels = [ 1, 2, 4, 8, 16, 32 ]
 
 def randomLayer():
 	type1 = random.choice(types)
-	# print('randomLayer:type1=', type1)
-	if type1 == "Linear":
+	if type1 in ["Linear", "LinearReLU"]:
 		k = random.choice(sizes)
-		return {"type":"Linear", "out_features":k}
-	elif type1 == "Conv2d":
+		return {"type":type1, "out_features":k}
+	elif type1 in ["Conv2d", "ConvPool2d"]:
 		out_channels = random.choice(channels)
-		return {"type":"Conv2d", "out_channels": out_channels}
+		return {"type":type1, "out_channels": out_channels}
 	elif type1 == "AvgPool2d":
-		return {"type":"AvgPool2d"}
+		return {"type":type1}
 	else:
 		return {"type":type1}
 
 def compatable(in_shape, newLayerType):
 	if newLayerType in ["ReLU"]:
 		return True
-	elif len(in_shape) == 4 and newLayerType in ["Conv2d", "AvgPool2d", "Flatten"]:
+	elif len(in_shape) == 4 and newLayerType in ["Conv2d", "ConvPool2d", "AvgPool2d", "Flatten"]:
 		return True
-	elif len(in_shape) == 2 and newLayerType in ["Linear"]:
+	elif len(in_shape) == 2 and newLayerType in ["Linear", "LinearReLU"]:
 		return True
 	return False
 

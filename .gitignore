@@ -4,3 +4,4 @@ raw
 *.pt
 __pycache__
 *.gz
+*.zip

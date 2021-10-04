@@ -1,0 +1,38 @@
+{
+  "filename": "3fc3ad0efdf3962c438d6011471d2490224f307f2b053282820f43c1385fe7c4",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "Conv2d",
+        "out_channels": 16
+      },
+      {
+        "type": "Conv2d",
+        "out_channels": 8
+      },
+      {
+        "type": "Conv2d",
+        "out_channels": 2
+      },
+      {
+        "type": "Conv2d",
+        "out_channels": 32
+      },
+      {
+        "type": "ReLU"
+      },
+      {
+        "type": "Flatten"
+      }
+    ],
+    "parameter_count": 130084,
+    "accuracy": 97.93000030517578
+  }
+}

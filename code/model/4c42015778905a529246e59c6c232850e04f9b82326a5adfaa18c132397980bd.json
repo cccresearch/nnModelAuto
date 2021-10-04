@@ -1,0 +1,27 @@
+{
+  "filename": "4c42015778905a529246e59c6c232850e04f9b82326a5adfaa18c132397980bd",
+  "model": {
+    "in_shape": [
+      28,
+      28
+    ],
+    "out_shape": [
+      10
+    ],
+    "layers": [
+      {
+        "type": "ConvPool2d",
+        "out_channels": 8
+      },
+      {
+        "type": "ConvPool2d",
+        "out_channels": 4
+      },
+      {
+        "type": "Flatten"
+      }
+    ],
+    "parameter_count": 1382,
+    "accuracy": 90.30000305175781
+  }
+}

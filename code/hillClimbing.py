@@ -3,6 +3,7 @@ import sys
 def log(s):
 	file.write(s+"\n")
 	print(s)
+	file.flush()
 
 def hillClimbing(s, maxGens, maxFails):   # 爬山演算法的主體函數
 	global file
