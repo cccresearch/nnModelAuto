@@ -12,7 +12,7 @@ def hillClimbing(s, maxGens, maxFails):   # 爬山演算法的主體函數
 	# 當代數 gen<maxGen，且連續失敗次數 fails < maxFails 時，就持續嘗試尋找更好的解。
 	for gens in range(maxGens):
 		snew = s.neighbor()               #  取得鄰近的解
-		log(f'snew={str(snew)}')
+		# log(f'snew={str(snew)}')
 		sheight = s.height()              #  sheight=目前解的高度
 		nheight = snew.height()           #  nheight=鄰近解的高度
 		# log(f'sheight:{sheight} nheight:{nheight}')

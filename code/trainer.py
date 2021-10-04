@@ -13,6 +13,7 @@ def log(msg):
 n_epochs = 3
 epoch_seconds_limit = 100
 # epoch_seconds_limit = 5
+# epoch_seconds_limit = 2
 batch_size_train = 64
 batch_size_test = 1000
 learning_rate = 0.01

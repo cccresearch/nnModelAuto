@@ -1,5 +1,5 @@
 {
-  "filename": "d95e936a4ce29817d3f832ade7233a69271cfe80973d0a83c03f577525d49d00",
+  "filename": "b4baf66abde348f1123b2aaf39cd9198d3128abd21e965af6ed24b74686c1719",
   "model": {
     "in_shape": [
       28,
@@ -10,14 +10,10 @@
     ],
     "layers": [
       {
-        "type": "Conv2d",
+        "type": "ConvPool2d",
         "out_channels": 6,
         "kernel_size": 5,
         "stride": 1
-      },
-      {
-        "type": "AvgPool2d",
-        "kernel_size": 2
       },
       {
         "type": "Conv2d",
@@ -32,11 +28,8 @@
         "type": "Flatten"
       },
       {
-        "type": "Linear",
+        "type": "LinearReLU",
         "out_features": 120
-      },
-      {
-        "type": "ReLU"
       },
       {
         "type": "Linear",
