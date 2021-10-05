@@ -1,0 +1,32 @@
+{
+  "in_shape": [
+    28,
+    28
+  ],
+  "out_shape": [
+    10
+  ],
+  "layers": [
+    {
+      "type": "Conv2d",
+      "out_channels": 32
+    },
+    {
+      "type": "Conv2d",
+      "out_channels": 32
+    },
+    {
+      "type": "ConvPool2d",
+      "out_channels": 32
+    },
+    {
+      "type": "ConvPool2d",
+      "out_channels": 32
+    },
+    {
+      "type": "Flatten"
+    }
+  ],
+  "parameter_count": 33194,
+  "accuracy": 90.97000122070312
+}

@@ -24,5 +24,5 @@ class Model(nn.Module):
 model = Model()
 x = torch.randn(1, 3, 224, 224)
 
-# Let's print it
+# Let"s print it
 model(x)

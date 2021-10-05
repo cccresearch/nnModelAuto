@@ -1,14 +1,11 @@
 from net import Net
-from solution import Solution
 import random
 import trainer
 import copy
-import model
-import sys
 
 types = ["ReLU", "Linear", "Conv2d", "AvgPool2d", "LinearReLU", "ConvPool2d"]
-sizes = [ 8, 16, 32, 64, 128, 256 ] # 限縮大小選取範圍，避免太多鄰居，所以不是所有整數都可以
-channels = [ 1, 2, 4, 8, 16, 32 ]   # 限縮通道數範圍
+sizes = [ 8, 16, 32, 64, 128, 256 ] # 限縮大小選取範圍，避免太多鄰居
+channels = [ 1, 2, 4, 8, 16, 32 ]   # 限縮通道數範圍，所以不是所有整數都可以
 
 def randomLayer():
 	type1 = random.choice(types)             # 隨機選一種層次
@@ -35,9 +32,8 @@ def compatable(in_shape, newLayerType):
 		return True
 	return False
 
-class SolutionNet(Solution):
+class SolutionNet:
 	def __init__(self, net):
-		super(type(self), self).__init__(net)
 		self.net = net
 
 	def neighbor(self):
@@ -68,14 +64,12 @@ class SolutionNet(Solution):
  
 	def height(self):
 		net = self.net
-		if not model.exist(net):        # 如果之前沒訓練過這個模型
-			trainer.run(net)            # 那麼就先訓練並紀錄正確率
+		if not net.exist():        # 如果之前沒訓練過這個模型
+			trainer.run(net)       # 那麼就先訓練並紀錄正確率
 		else:
-			jsonObj = model.load(net)   # 載入訓練結果
-			net.model['accuracy'] = jsonObj['model']['accuracy'] # 取得正確率
-	
+			net.load()             # 載入先前紀錄的模型與正確率
 		# 傳回高度 = 正確率 - 網路的參數數量/一百萬
-		return net.model['accuracy']-(net.model['parameter_count']/1000000)
+		return net.accuracy()-(net.parameter_count()/1000000)
 
 	def __str__(self):
 		return "{} height={:f}".format(self.net.model, self.height())

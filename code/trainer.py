@@ -3,16 +3,14 @@ import torchvision
 import torch.nn.functional as F
 import torch.optim as optim
 from datetime import datetime
-import os
-import model
+from net import Net
 
 def log(msg):
 	print(msg)
 	# pass
 
 n_epochs = 3
-epoch_seconds_limit = 100
-# epoch_seconds_limit = 5
+epoch_seconds_limit = 100000
 # epoch_seconds_limit = 2
 batch_size_train = 64
 batch_size_test = 1000
@@ -25,7 +23,7 @@ torch.backends.cudnn.enabled = False
 torch.manual_seed(random_seed)
 
 train_loader = torch.utils.data.DataLoader(
-	torchvision.datasets.MNIST('files/', train=True, download=True,
+	torchvision.datasets.MNIST("files/", train=True, download=True,
 							 transform=torchvision.transforms.Compose([
 								 torchvision.transforms.ToTensor(),
 								 torchvision.transforms.Normalize(
@@ -34,7 +32,7 @@ train_loader = torch.utils.data.DataLoader(
 	batch_size=batch_size_train, shuffle=True)
 
 test_loader = torch.utils.data.DataLoader(
-	torchvision.datasets.MNIST('files/', train=False, download=True,
+	torchvision.datasets.MNIST("files/", train=False, download=True,
 							 transform=torchvision.transforms.Compose([
 								 torchvision.transforms.ToTensor(),
 								 torchvision.transforms.Normalize(
@@ -64,7 +62,7 @@ def train(epoch):
 		loss.backward()
 		optimizer.step()
 		if batch_idx % log_interval == 0:
-			log('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
+			log("Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}".format(
 			epoch, batch_idx * len(data), len(train_loader.dataset),
 			100. * batch_idx / len(train_loader), loss.item()))
 			train_losses.append(loss.item())
@@ -84,25 +82,23 @@ def test():
 		test_loss /= len(test_loader.dataset)
 		test_losses.append(test_loss)
 		accuracy = 100. * correct / len(test_loader.dataset)
-		log('\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+		log("\nTest set: Avg. loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n".format(
 		test_loss, correct, len(test_loader.dataset), accuracy))
-		network.model['accuracy'] = accuracy.item()
+		network.model["accuracy"] = accuracy.item()
 
 def run(net):
 	init(net)
 	for epoch in range(1, n_epochs + 1):
 		train(epoch)
 	test()
-	model.save(net)
+	net.save()
 
 def main():
-	from net import Net
-	# net = Net.base_model([28,28], [10])
 	net = Net.cnn_model([28,28], [10])
-	if model.exist(net):
-		log('model exist!')
+	if net.exist():
+		log("model exist!")
 	else:
 		run(net)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()

@@ -1,0 +1,30 @@
+{
+  "in_shape": [
+    28,
+    28
+  ],
+  "out_shape": [
+    10
+  ],
+  "layers": [
+    {
+      "type": "Conv2d",
+      "out_channels": 32
+    },
+    {
+      "type": "Conv2d",
+      "out_channels": 32
+    },
+    {
+      "type": "ReLU"
+    },
+    {
+      "type": "AvgPool2d"
+    },
+    {
+      "type": "Flatten"
+    }
+  ],
+  "parameter_count": 55658,
+  "accuracy": 97.94000244140625
+}
