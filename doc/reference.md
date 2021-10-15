@@ -1,4 +1,12 @@
+
 # reference
+
+## 論文
+
+* [Learning representations by back-propagating errors, D. Rumelhart, Geoffrey E. Hinton, Ronald J. Williams, Published 1986, Computer Science, Nature](https://www.semanticscholar.org/paper/Learning-representations-by-back-propagating-errors-Rumelhart-Hinton/052b1d8ce63b07fec3de9dbb583772d860b7c769#matched)
+* 
+
+## 網路文章
 
 * [EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks](https://arxiv.org/pdf/1905.11946.pdf)
 * [NLLLoss 函式介紹與程式實作](https://clay-atlas.com/blog/2019/12/16/machine-learning-notes-nllloss-function/)
