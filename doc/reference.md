@@ -7,9 +7,9 @@
 * 1998, LeNet: [Gradient-Based Learning Applied to Document Recognition
 December 1998Proceedings of the IEEE 86(11):2278 - 2324](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf)
 * 2012, AlexNet: [ImageNet classification with deep convolutional neural networks, A. Krizhevsky, Ilya Sutskever, Geoffrey E. Hinton, Computer Science, Commun. ACM 3 December 2012](https://www.semanticscholar.org/paper/ImageNet-classification-with-deep-convolutional-Krizhevsky-Sutskever/abd1c342495432171beb7ca8fd9551ef13cbd0ff)
-* VGG, GoogLeNet (Inception v1): [Going deeper with convolutions, Christian Szegedy, W. Liu, +6 authors Andrew Rabinovich, Published 2015, Computer Science, 2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)](https://www.semanticscholar.org/paper/Going-deeper-with-convolutions-Szegedy-Liu/e15cf50aa89fee8535703b9f9512fca5bfc43327)
-* ResNet: [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift, S. Ioffe, Christian Szegedy, Published 2015, Computer Science, ArXiv](https://www.semanticscholar.org/paper/Batch-Normalization%3A-Accelerating-Deep-Network-by-Ioffe-Szegedy/4d376d6978dad0374edfa6709c9556b42d3594d3#citing-papers)
-* MobileNet: [Xception: Deep Learning with Depthwise Separable Convolutions, François Chollet, Published 2017, Computer Science, Mathematics
+* 2014, VGG, GoogLeNet (Inception v1): [Going deeper with convolutions, Christian Szegedy, W. Liu, +6 authors Andrew Rabinovich, Published 2015, Computer Science, 2015 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)](https://www.semanticscholar.org/paper/Going-deeper-with-convolutions-Szegedy-Liu/e15cf50aa89fee8535703b9f9512fca5bfc43327)
+* 2015, ResNet: [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift, S. Ioffe, Christian Szegedy, Published 2015, Computer Science, ArXiv](https://www.semanticscholar.org/paper/Batch-Normalization%3A-Accelerating-Deep-Network-by-Ioffe-Szegedy/4d376d6978dad0374edfa6709c9556b42d3594d3#citing-papers)
+* 2017, MobileNet: [Xception: Deep Learning with Depthwise Separable Convolutions, François Chollet, Published 2017, Computer Science, Mathematics
 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)](https://www.semanticscholar.org/paper/Xception%3A-Deep-Learning-with-Depthwise-Separable-Chollet/5b6ec746d309b165f9f9def873a2375b6fb40f3d)
 
 ## 網路文章
