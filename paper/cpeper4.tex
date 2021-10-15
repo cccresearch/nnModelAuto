@@ -1,11 +1,11 @@
 \documentclass{article}
 
+
 \usepackage{chinese}
 \usepackage{listings}
-%\usepackage{varioref}
 
 \lstset{frame=tb,
-    language=Python,
+  language=Python,
 }
 
 \title{採用爬山演算法自動建構神經網路模型 -- 以 MNIST 為例}
@@ -33,7 +33,7 @@
 
 
 % keywords can be removed
-\keywords{神經網路\and 深度學習\and MNIST\and 自動建模}
+\keywords{神經網路\and 深度學習\and MNIST}
 
 
 \section{簡介}
@@ -51,18 +51,33 @@
 當然，若採用其他的優化方法，例如 Best-First Search 等，或許會比爬山演算法表現更好，因此本實驗只能算是利用優化方法自動建模的一個初步嘗試。
 
 \section{背景}
+\label{background}
 
-神經網路的研究從早期的《單層感知器》開始，到了 Hinton 等人在 1986 年 \cite{Rumelhart1986LearningRB} 重新發明反傳遞演算法，並成功應用在語音辨識等問題之後，有過一陣研究熱潮。
 
-熱潮退去後，仍有些研究者持續改良神經網路模型，像是 LeCun \cite{LeCun1998GradientbasedLA} 等人所提出的卷積神經網路，在影像識別領域就有優異的表現。
+手寫數字辨識的 MNIST 是影像辨識領域中最常被拿來測試的資料集，而 CNN 卷積神經網路架構的 LeNet 則是 Yann Le Cun 1989 年在研究手寫辨識問題時，提出來的辨識模型，實驗發現 LeNet 在手寫辨識上有相當高的正確率。
 
-2011 年繪圖處理器硬體上的進展，以及 ImageNet 等大量測試集的出現，引發了神經網路的新一波研究發展，很多論文改良了卷積神經網路的架構，讓神經網路的層數加深並在許多領域表現優異，這些新發產被統稱為《深度學習技術》 \cite{Szegedy2015GoingDW} \cite{Ioffe2015BatchNA} \cite{Chollet2017XceptionDL} 。
+不過，其他的模型，像是使用多層感知器，也可以達到 90\% 以上的正確率，
 
-然而這些神經網路架構，通常是由創造者的知識經驗所設計出來的。
 
-既然神經網路可以建構出《影像辨識、語音辨識、語言生成》等模型，那麼我們能否用程式自動建構出神經網路呢？
+ \cite{kour2014real,kour2014fast} and see \cite{hadash2018estimate}.
 
-目前、這類的研究並不多 \cite{Mendoza2019TowardsAD} \cite{Abreu2019AutoNN} ，但已經逐漸有研究者投入，本研究也是我們的一個初步嘗試。
+The documentation for \verb+natbib+ may be found at
+\begin{center}
+  \url{http://mirrors.ctan.org/macros/latex/contrib/natbib/natnotes.pdf}
+\end{center}
+Of note is the command \verb+\citet+, which produces citations
+appropriate for use in inline text.  For example,
+\begin{verbatim}
+   \citet{hasselmo} investigated\dots
+\end{verbatim}
+produces
+\begin{quote}
+  Hasselmo, et al.\ (1995) investigated\dots
+\end{quote}
+
+\begin{center}
+  \url{https://www.ctan.org/pkg/booktabs}
+\end{center}
 
 
 \section{方法}
@@ -174,7 +189,7 @@ def neighbor(self):
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
 types = ["ReLU", "Linear", "Conv2d", "AvgPool2d", "LinearReLU", "ConvPool2d"]
-sizes = [ 8, 16, 32, 64, 128, 256 ] # 限縮大小選取範圍，不是所有整數都可以
+sizes = [ 8, 16, 32, 64, 128, 256 ] # 限縮大小選取範圍，避免太多鄰居，所以不是所有整數都可以
 channels = [ 1, 2, 4, 8, 16, 32 ]   # 限縮通道數範圍
 
 def randomLayer():
@@ -212,6 +227,7 @@ def compatable(in_shape, newLayerType):
 
 最後，爬山演算法必須有個起點，我們選擇用單層網路作為起點，也就是只有《Flatten + Linear》所形成的網路，其中 Flatten 是為了將原本 MNIST 輸入的多維《通道+影像》結構，攤平成單一維度的結構 (在 PyTorch 中得加上樣本數這個維度，所以是二維結構)。
 
+
 \section{實驗結果}
 
 本實驗中的爬山演算法，會在發現更好的模型時，印出該模型，以下是某次實驗整理成表格後的結果：
@@ -240,13 +256,15 @@ def compatable(in_shape, newLayerType):
 
 我們可以透過爬山演算法的高度函數設計，控制參數數量的多寡，例如我們若偏好小型模型，那麼或許可以將高度公式改為 《高度 = 正確率 - 參數數量/十萬》，但若我們認為模型大無所謂，那麼使用《高度 = 正確率》 這樣的公式也就可以了。
 
-
 \renewcommand\refname{參考文獻}
 
 \bibliographystyle{unsrt}  
 \bibliography{references}  %%% Remove comment to use the external .bib file (using bibtex).
 %%% and comment out the ``thebibliography'' section.
 
+
+%%% Comment out this section when you \bibliography{references} is enabled.
+%\begin{thebibliography}{1}
 
 % \end{thebibliography}
 
