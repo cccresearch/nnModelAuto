@@ -4,7 +4,8 @@
 ## 論文
 
 * [Learning representations by back-propagating errors, D. Rumelhart, Geoffrey E. Hinton, Ronald J. Williams, Published 1986, Computer Science, Nature](https://www.semanticscholar.org/paper/Learning-representations-by-back-propagating-errors-Rumelhart-Hinton/052b1d8ce63b07fec3de9dbb583772d860b7c769#matched)
-* 
+* [Gradient-Based Learning Applied to Document Recognition
+December 1998Proceedings of the IEEE 86(11):2278 - 2324](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf)
 
 ## 網路文章
 
