@@ -3,6 +3,9 @@
 
 ## 論文
 
+* 1958, Perceptron: [The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain, F. Rosenblatt, Published 1958, Computer Science, Medicine
+Psychological review](https://www.semanticscholar.org/paper/The-perceptron%3A-a-probabilistic-model-for-storage-Rosenblatt/5d11aad09f65431b5d3cb1d85328743c9e53ba96)
+
 * 1986, Backpropagation: [Learning representations by back-propagating errors, D. Rumelhart, Geoffrey E. Hinton, Ronald J. Williams, Published 1986, Computer Science, Nature](https://www.semanticscholar.org/paper/Learning-representations-by-back-propagating-errors-Rumelhart-Hinton/052b1d8ce63b07fec3de9dbb583772d860b7c769#matched)
 * 1998, LeNet: [Gradient-Based Learning Applied to Document Recognition
 December 1998Proceedings of the IEEE 86(11):2278 - 2324](https://www.semanticscholar.org/paper/Gradient-based-learning-applied-to-document-LeCun-Bottou/162d958ff885f1462aeda91cd72582323fd6a1f4)
