@@ -49,7 +49,7 @@
 
 我們的實驗結果顯示，使用簡單的爬山演算法，就能從一個單層線性網路的架構開始，在正確率上逐步攀爬，最後得到一個還不錯的多層架構，讓正確率從 91.79\% 提升到 98.05\%。
 
-當然，若採用其他的優化方法，例如《最佳優先搜尋法》等，或許會比爬山演算法表現更好，因此本實驗只能算是利用優化方法自動建模的一個初步嘗試。
+當然，若採用其他的優化方法，例如《機率式搜尋法》等，或許會比爬山演算法表現更好，因此本實驗只能算是利用優化方法自動建模的一個初步嘗試。
 
 \section{背景}
 
@@ -70,15 +70,13 @@
 爬山演算法是模仿爬山的動作，只要看到附近有更高的點，就往那個方向爬，寫成演算法如下所示：
 
 \begin{minipage}{\linewidth}
-\begin{verbatim}
-Algorithm HillClimbing(f, x)
-    x = 隨意設定一個解。
-    while (x 有鄰居 x' 比 x 更高)
-        x = x';
-    end
-    return x;
-end
-\end{verbatim}
+\begin{lstlisting}
+def HillClimbing(x)
+    x = 隨意設定一個解
+    while (x 有鄰居 x' 比 x 更高):
+        x = x'
+    return x
+\end{lstlisting}
 \end{minipage}
 
 由於要比較高低，因此通常會設定固定的高度函數 height()，透過 height() 去比較兩個解答的高度，然後決定新解達是否比舊解答的高度更高；若新解答更高則移動過去，否則就繼續找下一個鄰居。
@@ -181,7 +179,7 @@ def randomLayer():
     type1 = random.choice(types)             # 隨機選一種層次
     if type1 in ["Linear", "LinearReLU"]:    # 如果是 Linear 或 LinearReLU
         k = random.choice(sizes)             #   就隨機選取 k 作為輸出節點數
-        return {"type":type1, "整里程表tures":k}
+        return {"type":type1, "out_features":k}
     elif type1 in ["Conv2d", "ConvPool2d"]:  # 如果是 Conv2d 或 ConvPool2d
         out_channels = random.choice(channels) # 就隨機選取 channels 數量
         return {"type":type1, "out_channels": out_channels}
