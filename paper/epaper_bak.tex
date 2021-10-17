@@ -32,7 +32,7 @@ In this paper, we propose a method based on Hill-Climbing Algorithm to construct
 
 Our experiment shows that Hill-Climbing Algorithm works on handwritten digit recognition problem, and build a model with 98\% accuracy.
 
-You may get the open source code at: \url{ https://github.com/cccresearch/nnModelAuto/ }
+The open source code of this experiment: \url{ https://github.com/cccresearch/nnModelAuto/ }
 
 \end{abstract}
 
@@ -78,8 +78,8 @@ The Hill-Climbing Algorithm simulate the action of climbing a hill. When there a
 \begin{lstlisting}
 def HillClimbing(x)
     x = a random solution
-    while x have higher neighbor nx:
-        x = nx
+    while (x have neighbor x' higher):
+        x = x'
     return x
 \end{lstlisting}
 \end{minipage}
@@ -107,7 +107,7 @@ def hillClimbing(s, maxGens, maxFails):
 \end{lstlisting}
 \end{minipage}
 
-The height() function was defined as following in our code.
+In order to build neural network automatically by Hill-Climbing Algorithm. We defined the net.height() as "net.accuracy() - net.parameter_count()/1000000"。
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
@@ -121,7 +121,7 @@ def height(self):
 \end{lstlisting}
 \end{minipage}
 
-The height() above works well on MNIST case, but may be adjust for the other cases. 
+The height() above works well on MNIST case, but maybe should be adjust for the other cases. 
 
 Another function, neighbor(), works by random select from the [insert, update] operations. Insert will add a new layer, and update will modify a layer in the network.
 
@@ -198,7 +198,6 @@ Finally, the Hill-Climbing Algorithm start from a simple network with Flatten+Li
 
 From the start, Hill-Climbing Algorithm will add new layer or update existed layer step by step. Whenever find a better network (higher), move to it (the new solution). 
 
-
 \section{Experiments}
 
 In our code, whenever a better model is found, it will be recorded in a file. 
@@ -209,7 +208,7 @@ The follow table shows the accuracy and height of an experiment.
  \caption{The accuracy of models in our Hill-Climbing Algorithm on MNIST}
   \centering
   \begin{tabular}{llllll}
-    step & model     & accuracy   & parameter\_count & height   & comment \\
+    step & model     & accuracy   & parameter_count & height   & comment \\
     \midrule
     0  & Flatten & 91.79\% & 7850 & 91.782151 & start\\
     1   & ReLU+Flatten & 91.91\% & 7850 & 91.902154  \\
@@ -227,11 +226,11 @@ In table \ref{table:experiment1}, all model ends with an Linear layer appeneded.
 
 The Hill-Climbing Algorithm start from the Flatten(+Linear) model, and move to better model step by step. In step 49, a model "Conv2d(4)+Conv2d(8)+Conv2d(32)+ReLU+Flatten" was builted with accuracy 98.05\% .
 
-However, the paramter\_count increase from 7850 to 157562. 
+However, the paramter_count increase from 7850 to 157562. 
 
-Our height() function is "accuracy()-parameter\_count()/1000000", so, the height of the last model (98.05-0.158) is still better than the others, include the first one (91.79-0.07).
+Our height() function is "accuracy()-parameter_count()/1000000", so, the height of the last model (98.05-0.158) is still better than the others, include the first one (91.79-0.07).
 
-If we prefer small model, we may modify the height() function to "accuracy()-parameter\_count()/100000". If we don't care about the size of model, we may just use the "accuracy()" as the height().
+If we prefer small model, we may modify the height() function to "accuracy()-parameter_count()/100000". If we don't care about the size of model, we may just use the "accuracy()" as the height().
 
 \section{Conclusion and Future Works}
 
